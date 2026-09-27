@@ -4,7 +4,7 @@ An AI analyst that answers business questions **only from certified data**, and 
 
 Ask it "What was company-wide member churn in June 2026?" and Claude looks up the official KPI definition, writes SQL against certified tables, runs it through guardrails, and answers with the definition and tables it used. Ask it for customer emails or raw CRM data and it tells you that data is not available, because it has no way to reach it.
 
-It runs on the certified layer of my [Multi-Location Data Platform Blueprint](https://github.com/<your-username>/multi-location-data-platform). All data is **synthetic**.
+It runs on the certified layer of my [Multi-Location Data Platform Blueprint](https://github.com/quanti-nomad/multi-location-data-platform). All data is **synthetic**.
 
 ## Why this exists
 
