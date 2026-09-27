@@ -1,0 +1,485 @@
+{
+  "description": "Certified data for a fictional two-brand clinic chain (synthetic). Vitality Clinics locations are corporate-owned; Lumen Wellness locations are franchised.",
+  "tables": [
+    {
+      "name": "certified.dim_customer",
+      "description": "One row per real customer. Duplicate records are merged and test accounts removed.",
+      "tier": "executive",
+      "owner": "Data, Analytics & AI",
+      "rows": 8978,
+      "columns": [
+        {
+          "name": "customer_id",
+          "type": "INTEGER",
+          "description": ""
+        },
+        {
+          "name": "first_seen_at",
+          "type": "TIMESTAMP",
+          "description": ""
+        },
+        {
+          "name": "home_location_id",
+          "type": "INTEGER",
+          "description": ""
+        },
+        {
+          "name": "source_records_merged",
+          "type": "BIGINT",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "certified.dim_location",
+      "description": "One row per location with brand and ownership (corporate or franchise).",
+      "tier": "board",
+      "owner": "Data, Analytics & AI",
+      "rows": 24,
+      "columns": [
+        {
+          "name": "location_id",
+          "type": "INTEGER",
+          "description": ""
+        },
+        {
+          "name": "location_name",
+          "type": "VARCHAR",
+          "description": ""
+        },
+        {
+          "name": "city",
+          "type": "VARCHAR",
+          "description": ""
+        },
+        {
+          "name": "brand",
+          "type": "VARCHAR",
+          "description": ""
+        },
+        {
+          "name": "ownership",
+          "type": "VARCHAR",
+          "description": ""
+        },
+        {
+          "name": "franchisee_id",
+          "type": "VARCHAR",
+          "description": ""
+        },
+        {
+          "name": "opened_on",
+          "type": "DATE",
+          "description": ""
+        },
+        {
+          "name": "closed_on",
+          "type": "DATE",
+          "description": ""
+        },
+        {
+          "name": "is_active",
+          "type": "BOOLEAN",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "certified.fct_appointments",
+      "description": "One row per appointment for real customers, with a controlled status vocabulary.",
+      "tier": "executive",
+      "owner": "Data, Analytics & AI",
+      "rows": 50351,
+      "columns": [
+        {
+          "name": "appointment_id",
+          "type": "INTEGER",
+          "description": ""
+        },
+        {
+          "name": "customer_id",
+          "type": "INTEGER",
+          "description": ""
+        },
+        {
+          "name": "location_id",
+          "type": "INTEGER",
+          "description": ""
+        },
+        {
+          "name": "service_id",
+          "type": "INTEGER",
+          "description": ""
+        },
+        {
+          "name": "service_category",
+          "type": "VARCHAR",
+          "description": ""
+        },
+        {
+          "name": "appointment_date",
+          "type": "DATE",
+          "description": ""
+        },
+        {
+          "name": "status",
+          "type": "VARCHAR",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "certified.fct_leads",
+      "description": "One row per lead with normalized channel and conversion flag.",
+      "tier": "executive",
+      "owner": "Data, Analytics & AI",
+      "rows": 20777,
+      "columns": [
+        {
+          "name": "lead_id",
+          "type": "INTEGER",
+          "description": ""
+        },
+        {
+          "name": "location_id",
+          "type": "INTEGER",
+          "description": ""
+        },
+        {
+          "name": "channel",
+          "type": "VARCHAR",
+          "description": ""
+        },
+        {
+          "name": "lead_date",
+          "type": "DATE",
+          "description": ""
+        },
+        {
+          "name": "converted_customer_id",
+          "type": "INTEGER",
+          "description": ""
+        },
+        {
+          "name": "is_converted",
+          "type": "BOOLEAN",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "certified.fct_membership_months",
+      "description": "One row per membership per active calendar month.",
+      "tier": "board",
+      "owner": "Data, Analytics & AI",
+      "rows": 21950,
+      "columns": [
+        {
+          "name": "membership_id",
+          "type": "INTEGER",
+          "description": ""
+        },
+        {
+          "name": "customer_id",
+          "type": "INTEGER",
+          "description": ""
+        },
+        {
+          "name": "location_id",
+          "type": "INTEGER",
+          "description": ""
+        },
+        {
+          "name": "plan_name",
+          "type": "VARCHAR",
+          "description": ""
+        },
+        {
+          "name": "monthly_fee",
+          "type": "DECIMAL(10,2)",
+          "description": ""
+        },
+        {
+          "name": "month_start",
+          "type": "DATE",
+          "description": ""
+        },
+        {
+          "name": "is_new",
+          "type": "BOOLEAN",
+          "description": ""
+        },
+        {
+          "name": "is_churned",
+          "type": "BOOLEAN",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "certified.fct_payments",
+      "description": "Net revenue ledger. Settled sales and refunds; voids and test accounts excluded. Amounts in integer cents.",
+      "tier": "board",
+      "owner": "Data, Analytics & AI",
+      "rows": 64623,
+      "columns": [
+        {
+          "name": "payment_id",
+          "type": "INTEGER",
+          "description": ""
+        },
+        {
+          "name": "customer_id",
+          "type": "INTEGER",
+          "description": ""
+        },
+        {
+          "name": "location_id",
+          "type": "INTEGER",
+          "description": ""
+        },
+        {
+          "name": "payment_type",
+          "type": "VARCHAR",
+          "description": ""
+        },
+        {
+          "name": "revenue_stream",
+          "type": "VARCHAR",
+          "description": ""
+        },
+        {
+          "name": "amount_cents",
+          "type": "BIGINT",
+          "description": ""
+        },
+        {
+          "name": "amount",
+          "type": "DOUBLE",
+          "description": ""
+        },
+        {
+          "name": "payment_date",
+          "type": "DATE",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "metrics.kpi_location_monthly",
+      "description": "Certified KPI table, one row per location per open month. The single source for executive, board and franchisee reporting. Column definitions live in kpis/kpi_bible.yml.",
+      "tier": "board",
+      "owner": "Data, Analytics & AI",
+      "rows": 405,
+      "columns": [
+        {
+          "name": "location_id",
+          "type": "INTEGER",
+          "description": ""
+        },
+        {
+          "name": "location_name",
+          "type": "VARCHAR",
+          "description": ""
+        },
+        {
+          "name": "brand",
+          "type": "VARCHAR",
+          "description": ""
+        },
+        {
+          "name": "ownership",
+          "type": "VARCHAR",
+          "description": ""
+        },
+        {
+          "name": "franchisee_id",
+          "type": "VARCHAR",
+          "description": ""
+        },
+        {
+          "name": "month_start",
+          "type": "DATE",
+          "description": ""
+        },
+        {
+          "name": "net_revenue",
+          "type": "DOUBLE",
+          "description": ""
+        },
+        {
+          "name": "membership_revenue",
+          "type": "DOUBLE",
+          "description": ""
+        },
+        {
+          "name": "service_revenue",
+          "type": "DOUBLE",
+          "description": ""
+        },
+        {
+          "name": "appointments_scheduled",
+          "type": "BIGINT",
+          "description": ""
+        },
+        {
+          "name": "completed_visits",
+          "type": "BIGINT",
+          "description": ""
+        },
+        {
+          "name": "no_shows",
+          "type": "BIGINT",
+          "description": ""
+        },
+        {
+          "name": "no_show_rate",
+          "type": "DOUBLE",
+          "description": ""
+        },
+        {
+          "name": "revenue_per_visit",
+          "type": "DOUBLE",
+          "description": ""
+        },
+        {
+          "name": "active_members",
+          "type": "BIGINT",
+          "description": ""
+        },
+        {
+          "name": "new_members",
+          "type": "BIGINT",
+          "description": ""
+        },
+        {
+          "name": "churned_members",
+          "type": "BIGINT",
+          "description": ""
+        },
+        {
+          "name": "member_churn_rate",
+          "type": "DOUBLE",
+          "description": ""
+        },
+        {
+          "name": "leads",
+          "type": "BIGINT",
+          "description": ""
+        },
+        {
+          "name": "converted_leads",
+          "type": "BIGINT",
+          "description": ""
+        },
+        {
+          "name": "lead_conversion_rate",
+          "type": "DOUBLE",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "kpis": [
+    {
+      "id": "net_revenue",
+      "name": "Net Revenue",
+      "definition": "Settled sales and refunds for real customers, excluding voided payments and test accounts.",
+      "formula": "sum(fct_payments.amount_cents) / 100",
+      "grain": "location x month",
+      "tier": "board",
+      "unit": "currency",
+      "source": "metrics.kpi_location_monthly.net_revenue"
+    },
+    {
+      "id": "membership_revenue",
+      "name": "Membership Revenue",
+      "definition": "Net revenue from recurring membership charges.",
+      "formula": "sum(amount_cents) where revenue_stream = 'membership'",
+      "grain": "location x month",
+      "tier": "board",
+      "unit": "currency",
+      "source": "metrics.kpi_location_monthly.membership_revenue"
+    },
+    {
+      "id": "service_revenue",
+      "name": "Service Revenue",
+      "definition": "Net revenue from individual services, including refunds of those services.",
+      "formula": "sum(amount_cents) where revenue_stream = 'service'",
+      "grain": "location x month",
+      "tier": "executive",
+      "unit": "currency",
+      "source": "metrics.kpi_location_monthly.service_revenue"
+    },
+    {
+      "id": "active_members",
+      "name": "Active Members",
+      "definition": "Memberships active at any point in the month, including those that start or end in it.",
+      "formula": "count(fct_membership_months rows)",
+      "grain": "location x month",
+      "tier": "board",
+      "unit": "count",
+      "source": "metrics.kpi_location_monthly.active_members"
+    },
+    {
+      "id": "new_members",
+      "name": "New Members",
+      "definition": "Memberships whose start date falls in the month.",
+      "formula": "count where is_new",
+      "grain": "location x month",
+      "tier": "executive",
+      "unit": "count",
+      "source": "metrics.kpi_location_monthly.new_members"
+    },
+    {
+      "id": "member_churn_rate",
+      "name": "Member Churn Rate",
+      "definition": "Memberships ending in the month divided by memberships active at the start of the month.",
+      "formula": "churned_members / (active_members - new_members)",
+      "grain": "location x month",
+      "tier": "board",
+      "unit": "percent",
+      "source": "metrics.kpi_location_monthly.member_churn_rate"
+    },
+    {
+      "id": "completed_visits",
+      "name": "Completed Visits",
+      "definition": "Appointments with a completed status for real customers.",
+      "formula": "count(fct_appointments) where status = 'completed'",
+      "grain": "location x month",
+      "tier": "executive",
+      "unit": "count",
+      "source": "metrics.kpi_location_monthly.completed_visits"
+    },
+    {
+      "id": "no_show_rate",
+      "name": "No-Show Rate",
+      "definition": "No-show appointments divided by all scheduled appointments in the month.",
+      "formula": "no_shows / appointments_scheduled",
+      "grain": "location x month",
+      "tier": "operational",
+      "unit": "percent",
+      "source": "metrics.kpi_location_monthly.no_show_rate"
+    },
+    {
+      "id": "revenue_per_visit",
+      "name": "Revenue per Visit",
+      "definition": "Service revenue divided by completed visits. Membership revenue is excluded.",
+      "formula": "service_revenue / completed_visits",
+      "grain": "location x month",
+      "tier": "operational",
+      "unit": "currency",
+      "source": "metrics.kpi_location_monthly.revenue_per_visit"
+    },
+    {
+      "id": "lead_conversion_rate",
+      "name": "Lead Conversion Rate",
+      "definition": "Leads created in the month that became real customers, divided by all leads created in the month.",
+      "formula": "converted_leads / leads",
+      "grain": "location x month",
+      "tier": "executive",
+      "unit": "percent",
+      "source": "metrics.kpi_location_monthly.lead_conversion_rate"
+    }
+  ]
+}
